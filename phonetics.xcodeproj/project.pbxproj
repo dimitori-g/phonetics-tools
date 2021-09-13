@@ -6,10 +6,19 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXFileReference section */
+		DF58D8B326EF6F2E00761233 /* phonetics.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = phonetics.py; sourceTree = "<group>"; };
+		DF58D8B426EF6F2F00761233 /* phonetics.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = phonetics.csv; sourceTree = "<group>"; };
+		DF58D8B526EF6F2F00761233 /* readings.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = readings.csv; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		DF58D8AC26EF6F1500761233 = {
 			isa = PBXGroup;
 			children = (
+				DF58D8B426EF6F2F00761233 /* phonetics.csv */,
+				DF58D8B326EF6F2E00761233 /* phonetics.py */,
+				DF58D8B526EF6F2F00761233 /* readings.csv */,
 			);
 			sourceTree = "<group>";
 		};
