@@ -1,0 +1,77 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		DF58D8B326EF6F2E00761233 /* phonetics.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = phonetics.py; sourceTree = "<group>"; };
+		DF58D8B426EF6F2F00761233 /* phonetics.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = phonetics.csv; sourceTree = "<group>"; };
+		DF58D8B526EF6F2F00761233 /* readings.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = readings.csv; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		DF58D8AC26EF6F1500761233 = {
+			isa = PBXGroup;
+			children = (
+				DF58D8B426EF6F2F00761233 /* phonetics.csv */,
+				DF58D8B326EF6F2E00761233 /* phonetics.py */,
+				DF58D8B526EF6F2F00761233 /* readings.csv */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		DF58D8AD26EF6F1500761233 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1250;
+			};
+			buildConfigurationList = DF58D8B026EF6F1500761233 /* Build configuration list for PBXProject "phonetics" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DF58D8AC26EF6F1500761233;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		DF58D8B126EF6F1500761233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		DF58D8B226EF6F1500761233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF58D8B026EF6F1500761233 /* Build configuration list for PBXProject "phonetics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF58D8B126EF6F1500761233 /* Debug */,
+				DF58D8B226EF6F1500761233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF58D8AD26EF6F1500761233 /* Project object */;
+}
