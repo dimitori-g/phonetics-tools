@@ -1,6 +1,8 @@
 import csv
 import sys
+
 from prettytable import PrettyTable
+
 ptable = PrettyTable()
 
 args = sys.argv
@@ -52,4 +54,4 @@ if(len(args) > 1):
     ptable.align = 'l'
     print(ptable)
 else:
-    print('argument requred')
+    print('argument required')
