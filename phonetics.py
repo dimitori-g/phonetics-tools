@@ -41,12 +41,12 @@ def search_group(kanji):
                     res.append(line)
     return res
 
-if(len(args) > 1):
+if (len(args) > 1):
     print(search_kanji(args[1]))
     ptable.add_rows(search_group(args[1]))
-    ptable.field_names = ['gliph', 'pin', 'cant', 'jp_on', 'jp_kun', 'kr', 'viet']
+    ptable.field_names = ['glyph', 'pin', 'cant', 'jp_on', 'jp_kun', 'kr', 'viet']
     ptable.del_column('jp_kun')
-    ptable.sort_key([1,2])
+    ptable.sort_key([1, 2])
     ptable.align = 'l'
     print(ptable)
 else:
