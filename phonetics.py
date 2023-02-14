@@ -8,14 +8,14 @@ ptable = PrettyTable()
 args = sys.argv
 
 def search_kanji(kanji):
-    with open('phonetics.csv', encoding='utf-8') as f_obj:
+    with open('data/phonetics.csv', encoding='utf-8') as f_obj:
         reader = csv.reader(f_obj, delimiter=',')
         for line in reader:
             if kanji in str(line[0]):
                 return line
 
 def search_readings(kanji):
-    with open('readings.csv', encoding='utf-8') as f_obj:
+    with open('data/readings.csv', encoding='utf-8') as f_obj:
         reader = csv.reader(f_obj, delimiter=',')
         for line in reader:
             if kanji in str(line[0]):
@@ -23,7 +23,7 @@ def search_readings(kanji):
 
 def search_phonetic(phonetic):
     res = []
-    with open('phonetics.csv', encoding='utf-8') as f_obj:
+    with open('data/phonetics.csv', encoding='utf-8') as f_obj:
         reader = csv.reader(f_obj, delimiter=',')
         for line in reader:
             if phonetic in str(line[1]):
@@ -33,7 +33,7 @@ def search_phonetic(phonetic):
 def search_group(kanji):
     kanji_list = [kanji] + search_phonetic(kanji)
     # res = []
-    with open('readings.csv', encoding='utf-8') as f_obj:
+    with open('data/readings.csv', encoding='utf-8') as f_obj:
         reader = csv.reader(f_obj, delimiter=',')
         for line in reader:
             for kanji in kanji_list:
