@@ -7,4 +7,4 @@ pip install -r requirements.txt
 
 ## Usage sample
 
-<img src="https://i.postimg.cc/T16yRY7n/Screen-Shot-2021-09-13-at-20-45-16.png" alt="漢字音符画像" title="漢字音符画像">
+![漢字音符画像](/docs/sample_image.png?raw=true "漢字音符画像")
