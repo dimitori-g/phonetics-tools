@@ -7,6 +7,6 @@ pip install -r requirements.txt
 
 ## Usage example
 
-python3 phonetics.py 咸
+python3 phonetics.py 感
 
 ![漢字音符画像](/docs/sample_image.png?raw=true "漢字音符画像")
