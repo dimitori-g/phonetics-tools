@@ -30,6 +30,18 @@ def search_phonetic(phonetic):
                 res.append(line[0])
     return res
 
+def search_family(kanji):
+  sym = kanji
+  res = [kanji]
+  while(True):
+    phonetic = search_kanji(sym)
+    if phonetic:
+      sym = phonetic[1]
+      res.append(sym)
+    else:
+      break
+  return res
+
 def search_group(kanji):
     kanji_list = [kanji] + search_phonetic(kanji)
     res = []
@@ -42,12 +54,16 @@ def search_group(kanji):
     return res
 
 if (len(args) > 1):
-    print(search_kanji(args[1]))
-    ptable.add_rows(search_group(args[1]))
-    ptable.field_names = ['glyph', 'pin', 'cant', 'jp_on', 'jp_kun', 'kr', 'viet']
-    ptable.del_column('jp_kun')
-    ptable.sort_key([1, 2])
-    ptable.align = 'l'
-    print(ptable)
+    family = search_family(args[1])
+    print('phonetic family: ', family)
+    for phonetic in family[:-1]:
+      ptable.add_rows(search_group(phonetic))
+      ptable.field_names = ['glyph', 'pin', 'cant', 'on', 'kun', 'kr', 'viet']
+      ptable.del_column('kun')
+      ptable.sort_key([1, 2])
+      ptable.align = 'l'
+      print(phonetic)
+      print(ptable)
+      ptable.clear()
 else:
     print('argument required')
