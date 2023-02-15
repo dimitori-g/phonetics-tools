@@ -1,11 +1,17 @@
-# phonetics_script
-## Hanzi (kanji) phonetics research
+# Hanzi (kanji) phonetics research
 
-## Install
+### Use python virtual environments (optional)
+#### Create
+python3 -m venv venv
+#### Activate
+source venv/bin/activate
+#### Deactivate
+deactivate
 
+### Installation
 pip install -r requirements.txt
 
-## Usage example
+### Usage example
 
 python3 phonetics.py 感
 
