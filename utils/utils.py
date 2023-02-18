@@ -1,3 +1,6 @@
+import os, sys, requests
+from zipfile import ZipFile
+
 ## Delete tone from pynyin or cantonese syllable
 def delete_tone(syllable:str) -> str:
   pynyin_tones = 'āáǎàōóǒòēéěèīíǐìǖǘǚǜūúǔù'
@@ -35,3 +38,21 @@ def get_codes(area=[0,9]) -> dict:
 ## Convert code to symbol (including UNIHAN-like U+ code)
 def code_to_sym(code_point:str) -> str:
   return chr(int(code_point.replace('U+', '0x'),16))
+
+## Downloading UNIHAN data
+def get_unihan_data():
+  url = 'https://www.unicode.org/Public/zipped/latest/Unihan.zip'
+  zip_path = os.path.join(sys.path[0], 'unihan.zip')
+  dir_path = os.path.join(sys.path[0], 'unihan')
+  print('Downloading UNIHAN data ...')
+  req = requests.get(url, stream = True)
+  with open(zip_path, 'wb') as f_obj:
+    for chunk in req.iter_content(chunk_size=1024):
+      if chunk:
+        f_obj.write(chunk)
+  print('Download completed.')
+  print('Unzipping archive ..')
+  with ZipFile(zip_path, 'r') as zip_obj:
+   zip_obj.extractall(path=dir_path)
+  print('Unzipping completed.')
+  os.remove(zip_path)
