@@ -15,7 +15,7 @@ def delete_tone(syllable:str) -> str:
   return syllable
 
 ## Get symbol code list from UNICODE
-def get_codes(area=[0,9]) -> dict:
+def get_codes(area=[0,9]) -> list:
   cjk = [
   ['0x4E00',  '0x9FFF'],   #CJK Unified Ideographs (Han)
   ['0x3400',  '0x4DBF'],   #CJK Extension A
@@ -39,7 +39,7 @@ def get_codes(area=[0,9]) -> dict:
 def code_to_sym(code_point:str) -> str:
   return chr(int(code_point.replace('U+', '0x'),16))
 
-## Downloading UNIHAN data
+## Download UNIHAN data
 def get_unihan_data():
   url = 'https://www.unicode.org/Public/zipped/latest/Unihan.zip'
   zip_path = os.path.join(sys.path[0], 'unihan.zip')
@@ -56,3 +56,32 @@ def get_unihan_data():
    zip_obj.extractall(path=dir_path)
   print('Unzipping completed.')
   os.remove(zip_path)
+
+def parse_unihan_readings() -> list:
+  readings_path = os.path.join(sys.path[0], 'unihan', 'Unihan_Readings.txt')
+  if not os.path.isfile(readings_path):
+    print('UNIHAN data not found.')
+    get_unihan_data()
+  fields = ['code', 'sym', 'kMandarin',  'kCantonese', 'kJapaneseOn', 'kKorean', 'kHangul', 'kDefinition']
+  line = [None]*(len(fields))
+  lines = []
+  delim = '	'
+  with open(readings_path, 'r') as file:
+    current_line = file.readline().rstrip()
+    while('EOF' not in current_line):
+      if('#' not in current_line and current_line != ''):
+        current_sym = current_line.split(delim)[0]
+        current_field = current_line.split(delim)[1]
+        current_def = current_line.split(delim)[2]
+        line[0] = current_sym.replace('U+','0x').lower()
+        line[1] = code_to_sym(current_sym)
+        for field in fields:
+          if field == current_field:
+              line[fields.index(field)] = current_def
+        current_line = file.readline().rstrip()
+        if current_line.split(delim)[0] != current_sym:
+          lines.append(line)
+          line = [None]*(len(fields))
+      else:
+        current_line = file.readline().rstrip()
+  return lines
