@@ -1,11 +1,15 @@
-## Delete tones from pynyin
+## Delete tone from pynyin or cantonese syllable
 def delete_tone(syllable:str) -> str:
-    tones = 'āáǎàōóǒòēéěèīíǐìǖǘǚǜūúǔù'
-    conv =  'aaaaooooeeeeiiiiüüüüuuuu'
-    for i in range(len(tones)):
-        if tones[i] in syllable:
-            return syllable.replace(tones[i], conv[i])
-    return syllable
+  pynyin_tones = 'āáǎàōóǒòēéěèīíǐìǖǘǚǜūúǔù'
+  pynyin_conv =  'aaaaooooeeeeiiiiüüüüuuuu'
+  cantonese_tones = '123456'
+  for i in range(len(cantonese_tones)):
+    if cantonese_tones[i] in syllable:
+      return syllable.replace(cantonese_tones[i], '')
+  for i in range(len(pynyin_tones)):
+    if pynyin_tones[i] in syllable:
+      return syllable.replace(pynyin_tones[i], pynyin_conv[i])
+  return syllable
 
 ## Get symbol code list from UNICODE
 def get_codes(area=[0,9]) -> dict:
@@ -23,11 +27,11 @@ def get_codes(area=[0,9]) -> dict:
   ]
   code_list = []
   for block in range(area[0], area[1]+1):
-      block_start, block_end = int(cjk[block][0],16), int(cjk[block][1],16)
-      for code in range(block_start, block_end+1):
-        code_list.append(hex(code))
+    block_start, block_end = int(cjk[block][0],16), int(cjk[block][1],16)
+    for code in range(block_start, block_end+1):
+      code_list.append(hex(code))
   return code_list
 
 ## Convert code to symbol (including UNIHAN-like U+ code)
 def code_to_sym(code_point:str) -> str:
-	return chr(int(code_point.replace('U+', '0x'), 16))
+  return chr(int(code_point.replace('U+', '0x'),16))
