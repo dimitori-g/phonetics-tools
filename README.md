@@ -23,3 +23,26 @@ pip install -r requirements.txt
 python3 phonetics.py 感
 ````
 ![漢字音符画像](/docs/sample_image.png?raw=true "漢字音符画像")
+
+
+### Code style and test
+* #### Sort the imports
+````
+isort .
+````
+* #### Format the code
+````
+black .
+````
+* #### Check the code
+````
+flake8 .
+````
+* #### Type checking
+````
+mypy .
+````
+* #### Unit tests
+````
+pytest
+````
