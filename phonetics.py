@@ -47,7 +47,7 @@ def search_glyph_family(glyph):
             res.append(sym)
         else:
             break
-        return res
+    return res
 
 
 def search_group(kanji):
