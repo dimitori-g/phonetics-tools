@@ -67,7 +67,10 @@ if len(args) > 1:
     print("phonetic family: ", family)
     for phonetic in family[:-1]:
         ptable.add_rows(search_group(phonetic))
-        ptable.field_names = ["glyph", "pin", "cant", "on", "kun", "kr", "viet"]
+        ptable.field_names = [
+            "glyph", "pin", "cant",
+            "on", "kun", "kr", "viet"
+        ]
         ptable.del_column("kun")
         ptable.sort_key([1, 2])
         ptable.align = "l"
