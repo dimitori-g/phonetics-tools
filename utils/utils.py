@@ -2,6 +2,7 @@ import os
 import sys
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 from zipfile import ZipFile
 
 import requests
@@ -114,14 +115,15 @@ def create_glyphs():
     readings_df = pd.read_csv(READINGS_PATH)
     phonetics = []
     count = len(readings_df.index)
-    for index in range(count):
-        if not index % 1000:
-            print(index, "/", count)
+    for index in tqdm(range(count)):
         glyph = readings_df["glyph"][index]
         phonetic_df = phonetics_df[phonetics_df["glyph"] == glyph]
         if phonetic_df.empty:
             phonetics.append(np.nan)
         else:
-            phonetics.append(phonetic_df.iloc[0][0])
+            phonetics.append(phonetic_df.iloc[0][1])
     readings_df.insert(1, "phonetic", phonetics)
     readings_df.to_csv(OUTPUT_PATH, index=False)
+
+
+create_glyphs()
