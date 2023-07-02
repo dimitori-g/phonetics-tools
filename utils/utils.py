@@ -1,5 +1,7 @@
 import os
 import sys
+import pandas as pd
+import numpy as np
 from zipfile import ZipFile
 
 import requests
@@ -102,3 +104,24 @@ def parse_unihan_readings() -> list:
             else:
                 current_line = file.readline().rstrip()
     return lines
+
+
+def create_glyphs():
+    READINGS_PATH = "data/readings.csv"
+    PHONETICS_PATH = "data/phonetics.csv"
+    OUTPUT_PATH = "data/glyph.csv"
+    phonetics_df = pd.read_csv(PHONETICS_PATH)
+    readings_df = pd.read_csv(READINGS_PATH)
+    phonetics = []
+    count = len(readings_df.index)
+    for index in range(count):
+        if not index % 1000:
+            print(index, "/", count)
+        glyph = readings_df["glyph"][index]
+        phonetic_df = phonetics_df[phonetics_df["glyph"] == glyph]
+        if phonetic_df.empty:
+            phonetics.append(np.nan)
+        else:
+            phonetics.append(phonetic_df.iloc[0][0])
+    readings_df.insert(1, "phonetic", phonetics)
+    readings_df.to_csv(OUTPUT_PATH, index=False)
