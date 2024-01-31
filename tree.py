@@ -12,8 +12,7 @@ if len(args) == 1:
 else:
     input_glyph = args[1]
 
-readings_path = "data/readings.csv"
-phonetics_path = "data/phonetics.csv"
+phonetics_path = "data/glyph.csv"
 
 
 def find_parent_phonetic(glyph):
@@ -26,9 +25,12 @@ def find_parent_phonetic(glyph):
                     return row
             return row
 
-    sibling, child = get_phonetic_row(glyph)
-    while child not in ["0", None]:
-        sibling, child = get_phonetic_row(child)
+    row = get_phonetic_row(glyph)
+    print(row)
+    sibling, child = row[0], row[1]
+    while child not in ["", "0", None]:
+        row = get_phonetic_row(child)
+        sibling, child = row[0], row[1]
     return sibling
 
 
