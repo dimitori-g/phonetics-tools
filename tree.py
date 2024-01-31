@@ -26,7 +26,6 @@ def find_parent_phonetic(glyph):
             return row
 
     row = get_phonetic_row(glyph)
-    print(row)
     sibling, child = row[0], row[1]
     while child not in ["", "0", None]:
         row = get_phonetic_row(child)
