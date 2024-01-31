@@ -1,32 +1,73 @@
-from rich.tree import Tree
+import csv
+import sys
+
 from rich import print
+from rich.tree import Tree
 
-tree = Tree(':family: [yellow]Phonetic family: 𡿧[/yellow]')
+args = sys.argv
 
-level_1 = tree.add('[blue]𡿧(zai)[/blue]')
+if len(args) == 1:
+    print("argument required")
+    exit(0)
+else:
+    input_glyph = args[1]
 
-level_2_1 = level_1.add('[green]災(zai)[/green]')
-level_2_2 = level_1.add('[green]甾(zai,zi)[/green]')
+readings_path = "data/readings.csv"
+phonetics_path = "data/phonetics.csv"
 
-level_2_1.add('𨉒(?)')
-level_2_1.add('𨓌(?)')
-level_2_1.add('𭴠(?)')
 
-level_2_2.add('㿳(zi)')
-level_2_2.add('䅔(zi)')
-level_2_2.add('䎩(zi)')
-level_2_2.add('䐉(zi)')
-level_2_2.add('䣎(zi)')
-level_2_2.add('崰(zi)')
-level_2_2.add('椔(zi)')
-level_2_2.add('[green]淄(zi)[/green]').add('𬩆(?)')
-level_2_2.add('湽(zi)')
-level_2_2.add('𡸟(zi)')
-level_2_2.add('𥚉(zi)')
-level_2_2.add('𩜊(zi)')
-level_2_2.add('緇缁(zi)')
-level_2_2.add('輜輺辎(zi)')
-level_2_2.add('錙鍿锱(zi)')
-level_2_2.add('鯔鲻(zi)')
-level_2_2.add('鶅(zi)')
+def find_parent_phonetic(glyph):
+    def get_phonetic_row(glyph):
+        row = [None, None]
+        with open(phonetics_path, "r", encoding="utf-8") as file:
+            reader = csv.reader(file, delimiter=",")
+            for row in reader:
+                if row[0] == glyph:
+                    return row
+            return row
+
+    sibling, child = get_phonetic_row(glyph)
+    while child not in ["0", None]:
+        sibling, child = get_phonetic_row(child)
+    return sibling
+
+
+phonetic = find_parent_phonetic(input_glyph)
+
+
+def find_phonetics(unphonetics, phonetic):
+    result = {}
+    temp_unph = unphonetics.get(phonetic)
+    if temp_unph is None:
+        return result
+    else:
+        for sub_unph in temp_unph:
+            result[sub_unph] = find_phonetics(unphonetics, sub_unph)
+    return result
+
+
+with open(phonetics_path, "r", encoding="utf-8") as file:
+    reader = csv.reader(file, delimiter=",")
+    phonetics_full_revers = {}
+    count = 0
+    for row in reader:
+        if count > 0:
+            if phonetics_full_revers.get(row[1]) is None:
+                phonetics_full_revers[row[1]] = row[0]
+            elif row[1] != "0":
+                phonetics_full_revers[row[1]] = (
+                    phonetics_full_revers.pop(row[1]) + row[0]
+                )
+        count += 1
+    phonetic_tree = {phonetic: find_phonetics(phonetics_full_revers, phonetic)}
+
+
+def make_tree(node, tree):
+    for child in node.keys():
+        branch = tree.add(child)
+        make_tree(node[child], branch)
+
+
+tree = Tree(phonetic)
+make_tree(phonetic_tree[phonetic], tree)
 print(tree)
