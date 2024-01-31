@@ -14908,7 +14908,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 湺,保,xián,,,,보,
 湻,亯,chún,seon4,JUN SHUN,ATSUI,,
 湼,,niè,nip6,,,,
-湽,,zī,,SHI,,,
+湽,甾,zī,,SHI,,,
 湾,弯,wān,waan1,WAN,IRIE,,
 湿,显,shī,sap1,SHITSU,SHIMERU SHIMESU URUOU,,
 満,艹両,mǎn,,MAN BAN,MICHIRU MITASU,,
@@ -15420,7 +15420,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 灺,,xiè,ce6 se3,,,,
 灻,,chì,,,,,
 灼,勺,zhuó,coek3 zoek3,SHAKU,YAKU,작,chước
-災,1,zāi,zoi1,SAI,WAZAWAI,재,tai
+災,𡿧,zāi,zoi1,SAI,WAZAWAI,재,tai
 灾,,zāi,zoi1,SAI,WAZAWAAI,재,tai
 灿,,càn,can3,,,,
 炀,,yáng,joeng4,,,,
@@ -16637,7 +16637,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 画,0,huà,waa2 waak6,GA KAKU,KAGIRU HAKARU HAKARIGOTO,획,
 甼,丁,tǐng,,CHOU TEI,MACHI,,
 甽,川,zhèn,hyun2 zan3,KEN KEI KYOU,MIZO,,
-甾,0,zāi,zi1 zoi1,SHI,KAME,,
+甾,𡿧,zī zāi,zi1 zoi1,SHI,KAME,,
 甿,亡,méng,man4,MOU MYOU BOU,,맹,
 畀,甶,bì,bei2 bei3,HI,ATAERUMONO,,
 畁,,bì,,,,,
@@ -23289,7 +23289,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 輷,訇,hōng,gwang1,KOU,TODOROKU,,
 輸,兪,shū,syu1,YU SHU,OKURU ITASU,수,thâu
 輹,复,fù,fuk1,FUKU BUKU,TOKOSHIBARI,복,
-輺,,zī,,SHI,HOROGURUMA NIGURUMA,,
+輺,甾,zī,,SHI,HOROGURUMA NIGURUMA,,
 輻,畐,fú,fuk1,FUKU,YA,복 폭,
 輼,昷,wēn,,,,,
 輽,畚,bèn,,,,,
@@ -24382,7 +24382,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 鍼,咸,zhēn,zam1,SHIN,HARI SASU,침,châm
 鍽,扁,biān,bin1,HEN,KANE,,
 鍾,重,zhōng,zung1,SHOU,SAKAZUKI ATSUMERU,종,chung
-鍿,,zī,,SHI,,,
+鍿,甾,zī,,SHI,,,
 鎀,修,xiū,,SHUU SHU,ARAGANE,,
 鎁,耶,yé,je4,YA,,,
 鎂,美,měi,mei5,BI,MAGUNESHIUMU,,
@@ -36219,7 +36219,7 @@ glyph,phonetic,pinyin,cantonese,on,kun,korean,vietnamese
 𡿤,,xián,,,,,
 𡿥,鬱,yù,,,,,
 𡿦,,,,,,,
-𡿧,,zāi,,,,,
+𡿧,0,zāi,,,,,
 𡿨,,quǎn,,,,,
 𡿩,,liè,,,,,
 𡿪,,,,,,,
