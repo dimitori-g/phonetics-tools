@@ -17,15 +17,16 @@ phonetics_path = "data/glyph.csv"
 
 def find_parent_phonetic(glyph):
     def get_phonetic_row(glyph):
-        row = [None, None]
         with open(phonetics_path, "r", encoding="utf-8") as file:
             reader = csv.reader(file, delimiter=",")
             for row in reader:
                 if row[0] == glyph:
                     return row
-            return row
+            return None
 
     row = get_phonetic_row(glyph)
+    if row is None:
+        return None
     sibling, child = row[0], row[1]
     while child not in ["", "0", None]:
         row = get_phonetic_row(child)
@@ -34,6 +35,10 @@ def find_parent_phonetic(glyph):
 
 
 phonetic = find_parent_phonetic(input_glyph)
+
+if phonetic is None:
+    print("Data not founded")
+    exit(0)
 
 
 def find_phonetics(unphonetics, phonetic):
