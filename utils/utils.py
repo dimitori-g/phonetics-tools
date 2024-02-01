@@ -107,13 +107,29 @@ def parse_unihan_readings() -> list:
     return lines
 
 
+def find_parent_phonetic(glyph):
+    PHONETICS_PATH = "data/phonetics.csv"
+    phonetics_df = pd.read_csv(PHONETICS_PATH)
+    row = phonetics_df[phonetics_df["glyph"] == glyph]
+    if row.empty:
+        return None
+    sibling, child = row["glyph"].item(), row["phonetic"].item()
+    while child not in ["", "0", "1", None]:
+        row = phonetics_df[phonetics_df["glyph"] == child]
+        if row.empty:
+            return None
+        sibling, child = row["glyph"].item(), row["phonetic"].item()
+    return sibling
+
+
 def create_glyphs():
     READINGS_PATH = "data/readings.csv"
     PHONETICS_PATH = "data/phonetics.csv"
-    OUTPUT_PATH = "data/glyph.csv"
+    OUTPUT_PATH = "data/glyphs.csv"
     phonetics_df = pd.read_csv(PHONETICS_PATH)
     readings_df = pd.read_csv(READINGS_PATH)
     phonetics = []
+    family = []
     count = len(readings_df.index)
     for index in tqdm(range(count)):
         glyph = readings_df["glyph"][index]
@@ -122,8 +138,15 @@ def create_glyphs():
             phonetics.append(np.nan)
         else:
             phonetics.append(phonetic_df.iloc[0][1])
+        family_element = find_parent_phonetic(glyph)
+        if family_element is None:
+            family.append(np.nan)
+        else:
+            family.append(family_element)
     readings_df.insert(1, "phonetic", phonetics)
+    readings_df.insert(2, "family", family)
     readings_df.to_csv(OUTPUT_PATH, index=False)
 
 
 create_glyphs()
+# print(find_parent_phonetic("岁"))
