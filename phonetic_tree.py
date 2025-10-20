@@ -37,13 +37,13 @@ def load_readings(filepath: str = "data/readings.csv") -> Dict[str, str]:
 def find_ancestor(glyph: str, phonetics: Dict[str, str]) -> str:
     """
     Find the root ancestor of a glyph by traversing up the parent chain.
-    Returns the ancestor glyph (the one with '0' as parent).
+    Returns the ancestor glyph (the one with '0' or '1' as parent).
     """
     current = glyph
     visited = set()
 
     # Traverse up the parent chain
-    while current in phonetics and phonetics[current] != "0":
+    while current in phonetics and phonetics[current] not in ("0", "1"):
         if current in visited:
             # Circular reference, return current
             return current
@@ -59,7 +59,7 @@ def build_children_map(phonetics: Dict[str, str]) -> Dict[str, List[str]]:
     """
     children_map = {}
     for child, parent in phonetics.items():
-        if parent != "0":
+        if parent not in ("0", "1"):
             if parent not in children_map:
                 children_map[parent] = []
             children_map[parent].append(child)
